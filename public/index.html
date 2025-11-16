@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐收藏馆</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-music"></i>
+                <h1>音乐收藏馆</h1>
+            </div>
+            <div class="upload-btn-container">
+                <button class="upload-btn" id="uploadBtn">
+                    <i class="fas fa-cloud-upload-alt"></i> 上传音乐
+                </button>
+            </div>
+        </header>
+
+        <div class="upload-modal" id="uploadModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>上传音乐文件</h2>
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="fileInput">选择音乐文件</label>
+                        <input type="file" id="fileInput" accept="audio/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="artistName">歌手名称</label>
+                        <input type="text" id="artistName" placeholder="输入歌手姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="songTitle">歌曲名称</label>
+                        <input type="text" id="songTitle" placeholder="输入歌曲名称" required>
+                    </div>
+                    <button type="submit" class="submit-btn">上传</button>
+                </form>
+                <div id="uploadProgress" class="progress-bar" style="display: none;">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="搜索歌曲或歌手...">
+            </div>
+            <div class="artist-filter">
+                <select id="artistSelect">
+                    <option value="">所有歌手</option>
+                </select>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="artists-section">
+                <h2>歌手分类</h2>
+                <div id="artistsList" class="artists-list"></div>
+            </div>
+
+            <div class="songs-section">
+                <h2>歌曲列表</h2>
+                <div id="songsList" class="songs-list"></div>
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </main>
+
+        <div class="player" id="player">
+            <div class="player-info">
+                <div class="album-art">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="song-info">
+                    <div class="song-title" id="currentSongTitle">选择一首歌曲开始播放</div>
+                    <div class="artist-name" id="currentArtistName"></div>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn" id="prevBtn">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-btn play-pause" id="playPauseBtn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="nextBtn">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            <div class="player-progress">
+                <div class="progress-time" id="currentTime">0:00</div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-time" id="duration">0:00</div>
+            </div>
+            <audio id="audioPlayer" preload="metadata"></audio>
+        </div>
+    </div>
+
+    <script src="/scripts/player.js"></script>
+    <script src="/scripts/upload.js"></script>
+    <script src="/scripts/app.js"></script>
+</body>
+</html>
